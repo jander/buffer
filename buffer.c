@@ -293,7 +293,7 @@ buffer_trim_left(buffer_t *self) {
 		*p = 0;
 		++p;
 		--len;
-		--self->size;
+		--self->len;
 	}
 	memmove(self->data, p, len + 1);
 }
