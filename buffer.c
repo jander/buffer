@@ -285,10 +285,17 @@ buffer_indexof(buffer_t *self, char *str) {
 
 void
 buffer_trim_left(buffer_t *self) {
-  int c;
-  while ((c = *self->data) && isspace(c)) {
-    ++self->data;
-  }
+	char *p = self->data;
+	int len = strlen(p);
+
+	while(*p && isspace(*p))
+	{
+		*p = 0;
+		++p;
+		--len;
+		--self->size;
+	}
+	memmove(self->data, p, len + 1);
 }
 
 /*
